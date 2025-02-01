@@ -17,13 +17,13 @@ const ExpenseEntryScreen = ({ navigation, route }) => {
   const updateEntry = (index, field, value) => {
     const newEntries = [...entries];
     newEntries[index][field] = value;
-  
+
+    // Before sorting, configure the animation for layout changes
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+
     // Sort entries by price in descending order
     const sortedEntries = newEntries.sort((a, b) => (parseFloat(b.price) || 0) - (parseFloat(a.price) || 0));
-  
-    // Animate sorting transition
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-  
+
     setEntries(sortedEntries);
   };
 
