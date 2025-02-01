@@ -16,7 +16,11 @@ const ExpenseEntryScreen = ({ navigation, route }) => {
   const updateEntry = (index, field, value) => {
     const newEntries = [...entries];
     newEntries[index][field] = value;
-    setEntries(newEntries);
+  
+    // Sort entries by price in descending order
+    const sortedEntries = newEntries.sort((a, b) => (parseFloat(b.price) || 0) - (parseFloat(a.price) || 0));
+  
+    setEntries(sortedEntries);
   };
 
   const addRow = () => {
