@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, TextInput, FlatList } from "react-native";
 import { Button, Text, Menu, IconButton } from "react-native-paper";
 import { GestureHandlerRootView, Swipeable } from "react-native-gesture-handler";
+import { LayoutAnimation } from "react-native";
 
 const categories = ["Food", "Travel", "Family", "Treat"];
 
@@ -19,6 +20,9 @@ const ExpenseEntryScreen = ({ navigation, route }) => {
   
     // Sort entries by price in descending order
     const sortedEntries = newEntries.sort((a, b) => (parseFloat(b.price) || 0) - (parseFloat(a.price) || 0));
+  
+    // Animate sorting transition
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   
     setEntries(sortedEntries);
   };
